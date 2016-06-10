@@ -1,19 +1,19 @@
-var http = require("http");
-var winston = require('winston');
-var colors = require('colors');
-var http = require("http");
-var url = require("url");
-var ind = 0;
+var http = require("http")
+, winston = require('winston')
+, colors = require('colors')
+, url = require("url")
+, ind = 0;
 
 function start(route,handle){
     function onRequest(request, response) {
       var pathname = url.parse(request.url).pathname;
       console.log(colors.green.underline("Получено запросов: ", ind++, colors.bgWhite(pathname)));
-      
-      route(handle,pathname);
+      //routing
+      var content = route(handle,pathname);
       
       response.writeHead(200, {"Content-Type": "text/plain"});
-      response.write("Hello World \n");
+      // content back
+      response.write(content);
       response.end();
     
     }
