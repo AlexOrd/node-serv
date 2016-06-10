@@ -8,15 +8,9 @@ function start(route,handle){
     function onRequest(request, response) {
       var pathname = url.parse(request.url).pathname;
       console.log(colors.green.underline("Получено запросов: ", ind++, colors.bgWhite(pathname)));
-      //routing
-      var content = route(handle,pathname);
       
-      response.writeHead(200, {"Content-Type": "text/plain"});
-      // content back
-      response.write(content);
-      response.end();
-    
-    }
+      route(handle, pathname, response);
+  }
     http.createServer(onRequest).listen(process.env.PORT );
     
     console.log("Сервер работает.".yellow);

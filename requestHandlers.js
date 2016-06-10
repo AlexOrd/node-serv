@@ -1,11 +1,15 @@
-function start() {
+function start(response) {
   console.log("Запрос 'start'.");
-  return "Start";
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("Start");
+    response.end();
 }
 
-function upload() {
-  console.log("Запрос 'upload'.");
-  return "Upload";
+function upload(response) {
+  console.log("Request handler 'upload' was called.");
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.write("Hello Upload");
+  response.end();
 }
 
 exports.start = start;
