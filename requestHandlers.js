@@ -1,13 +1,15 @@
+var jade = require('jade');
+
 function start(response) {
-  console.log("Запрос 'start'.");
-    response.writeHead(200, {"Content-Type": "text/plain"});
-    response.write("Start");
+  console.log("--- Обработка запроса 'start'".blue.bold);
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(jade.renderFile('./views/index.jade'));
     response.end();
 }
 
 function upload(response) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.writeHead(200, {"Content-Type": "text/html"});
   response.write("Hello Upload");
   response.end();
 }
