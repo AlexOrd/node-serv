@@ -1,8 +1,8 @@
-function route(handle, pathname, response, postData) {
+function route(handle, pathname, response, request) {
   console.log("- Роутер работает: ".blue.bold + pathname);
   // func - if handle in hash
   if (typeof handle[pathname] === 'function') {
-    return handle[pathname](response, postData);
+    return handle[pathname](response, request);
   } else {
     console.log("Не найден отбрабочтик для данного запроса: ".red + pathname);
     

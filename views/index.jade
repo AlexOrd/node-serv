@@ -3,6 +3,11 @@ extends layout
 block content
   h1 Hello
   p 
-  form(action='/upload',method='post')
-    textarea(name='text',rows='20', cols='60') Input text
+  form(action='/upload',enctype='multipart/form-data',method='post')
+    input(type='file',name='upload',multiple='multiple')
     button(type='submit',value='Submit text') UPLOAD
+    
+//     <form action="/upload"  '+
+// 	'method="post">'+
+// 	'<input type="file" name="upload" multiple="multiple">'+
+// 	'<input type="submit" value="Upload file" />'

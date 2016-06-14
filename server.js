@@ -1,4 +1,5 @@
-var http = require("http")
+var  http = require('http')
+, sys = require('sys')
 , winston = require('winston')
 , colors = require('colors')
 , url = require("url")
@@ -12,18 +13,8 @@ function start(route, handle){
        
       console.log(colors.green.underline("Получено запросов ", ind_req++, pathname));
       
-      request.setEncoding("utf8");
-
-    request.addListener("data", function(postDataChunk) {
-      countData++;
-      postData += postDataChunk;
-      console.log("- Получены POST данные: ".blue.bold + countData + " часть" + " '" + String(postDataChunk).yellow + "'.");
+      route(handle, pathname, response, request);
       
-    });
-
-    request.addListener("end", function() {
-      route(handle, pathname, response, postData);
-    });
   }
     http.createServer(onRequest).listen(process.env.PORT );
     
