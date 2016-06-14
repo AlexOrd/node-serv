@@ -1,4 +1,6 @@
 var jade = require('jade');
+var querystring = require("querystring");
+
 
 function start(response) {
   console.log("--- Обработка запроса 'start'".blue.bold);
@@ -7,10 +9,10 @@ function start(response) {
     response.end();
 }
 
-function upload(response) {
-  console.log("Request handler 'upload' was called.");
+function upload(response, postData) {
+  console.log("--- Обработка запроса 'upload'".blue.bold);
   response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("Hello Upload");
+  response.write("Upload: " + querystring.parse(postData).text);
   response.end();
 }
 

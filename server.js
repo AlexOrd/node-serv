@@ -6,10 +6,24 @@ var http = require("http")
 
 function start(route, handle){
     function onRequest(request, response) {
+      var postData = "";
+      var countData = 0;
       var pathname = url.parse(request.url).pathname;
+       
       console.log(colors.green.underline("Получено запросов ", ind_req++, pathname));
       
-      route(handle, pathname, response);
+      request.setEncoding("utf8");
+
+    request.addListener("data", function(postDataChunk) {
+      countData++;
+      postData += postDataChunk;
+      console.log("- Получены POST данные: ".blue.bold + countData + " часть" + " '" + String(postDataChunk).yellow + "'.");
+      
+    });
+
+    request.addListener("end", function() {
+      route(handle, pathname, response, postData);
+    });
   }
     http.createServer(onRequest).listen(process.env.PORT );
     

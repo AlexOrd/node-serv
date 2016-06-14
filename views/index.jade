@@ -2,5 +2,7 @@ extends layout
 
 block content
   h1 Hello
-  p Welcome
-  
+  p 
+  form(action='/upload',method='post')
+    textarea(name='text',rows='20', cols='60') Input text
+    button(type='submit',value='Submit text') UPLOAD

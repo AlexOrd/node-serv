@@ -8,6 +8,7 @@
   "dependencies": {
     "colors": "*",
     "jade": "*",
-    "winston": "*"
+    "winston": "*",
+    "formidable": "*"
   }
 }
